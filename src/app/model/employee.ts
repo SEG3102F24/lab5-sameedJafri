@@ -1,10 +1,10 @@
-export class Employee {
-  constructor(
-    public name: string,
-    public dateOfBirth: Date,
-    public city: string,
-    public salary: number,
-    public gender?: string,
-    public email?: string
-  ) {}
+export interface Employee {
+  id: string;
+  name: string;
+  dateOfBirth: string;  // Change this to string
+  city: string;
+  salary: number;
+  gender: string;
+  email: string;
+  toFirestore(): { [key: string]: any };
 }

@@ -1,25 +1,30 @@
-<a class="btn btn-primary" [routerLink]="['/employee']">Add Employee</a>
+<button [routerLink]="['/employee']" class="btn btn-primary">Add Employee</button>
+
 <div class="container">
   <table class="table">
     <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Date of birth</th>
-      <th scope="col">City</th>
-      <th scope="col">Salary</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Email</th>
-    </tr>
+      <tr>
+        <th>Name</th>
+        <th>Date of birth</th>
+        <th>City</th>
+        <th>Salary</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let emp of employees.$ | async">
-      <td>{{emp.name}}</td>
-      <td>{{emp.dateOfBirth | date :'d/MMM/y'}}</td>
-      <td>{{emp.city}}</td>
-      <td>{{emp.salary}}</td>
-      <td>{{emp.gender}}</td>
-      <td>{{emp.email}}</td>
-    </tr>
+      <tr *ngFor="let emp of employees$ | async">
+        <td>{{emp.name}}</td>
+        <td>{{emp.dateOfBirth | date:'d/MMM/y'}}</td>
+        <td>{{emp.city}}</td>
+        <td>{{emp.salary}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.email}}</td>
+        <td>
+          <button (click)="deleteEmployee(emp.id)" class="btn btn-danger btn-sm">Delete</button>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

@@ -1,55 +1,65 @@
-<a class="btn btn-primary" [routerLink]="['/employees']">Employee List</a>
+<button [routerLink]="['/employees']" class="btn btn-primary">
+  Employee List
+</button>
+
 <div class="container">
-  <h1>Employee Entry Form</h1>
+  <h2 class="my-4">Employee Entry Form</h2>
+
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" formControlName="name" required>
-      <div [hidden]="name.pristine || name.valid"
-           class="alert alert-danger">
+      <label for="name" class="form-label">Name:</label>
+      <input id="name" type="text" class="form-control" formControlName="name">
+      <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
         Employee Name is required.
       </div>
     </div>
+
     <div class="mb-3">
-      <label for="dob">Date of Birth:</label>
-      <input type="date" class="form-control" id="dob" formControlName="dateOfBirth" required >
-      <div [hidden]="dateOfBirth.pristine || dateOfBirth.valid"
-           class="alert alert-danger">
+      <label for="dateOfBirth" class="form-label">Date of Birth:</label>
+      <input id="dateOfBirth" type="date" class="form-control" formControlName="dateOfBirth">
+      <div class="alert alert-danger" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">
         Date of birth is required.
       </div>
     </div>
+
     <div class="mb-3">
-      <label for="city">City:</label>
-      <input type="text" class="form-control" id="city" required formControlName="city">
-      <div [hidden]="city.pristine || city.valid"
-           class="alert alert-danger">
+      <label for="city" class="form-label">City:</label>
+      <input id="city" type="text" class="form-control" formControlName="city">
+      <div class="alert alert-danger" *ngIf="city.invalid && (city.dirty || city.touched)">
         City of employment is required.
       </div>
     </div>
+
     <div class="mb-3">
-      <label for="salary">Salary:</label>
-      <input type="number" class="form-control" id="salary" required step="0.01" formControlName="salary">
-      <div [hidden]="salary.pristine || salary.valid"
-           class="alert alert-danger">
-        Salary is required.
+      <label for="salary" class="form-label">Salary:</label>
+      <input id="salary" type="number" class="form-control" formControlName="salary">
+      <div class="alert alert-danger" *ngIf="salary.invalid && (salary.dirty || salary.touched)">
+        Salary is required and must be greater than 0.
       </div>
     </div>
+
+
+
     <div class="mb-3">
-      <label for="gender">Gender:</label>
-      <input type="text" class="form-control" id="gender" formControlName="gender" placeholder="M, F or X">
-      <div [hidden]="gender.pristine || gender.valid"
-           class="alert alert-danger">
+      <label for="gender" class="form-label">Gender:</label>
+      <input id="gender" type="text" class="form-control" formControlName="gender">
+      <div class="alert alert-danger" *ngIf="gender.invalid && (gender.dirty || gender.touched)">
         Gender should be M, F or X.
       </div>
     </div>
+
     <div class="mb-3">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" formControlName="email">
-      <div [hidden]="email.pristine || email.valid"
-           class="alert alert-danger">
+      <label for="email" class="form-label">Email:</label>
+      <input id="email" type="email" class="form-control" formControlName="email">
+      <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
         Wrong email format.
       </div>
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="employeeForm.invalid">Submit</button>
+
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group me-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!employeeForm.valid">Submit</button>
+      </div>
+    </div>
   </form>
 </div>
